@@ -1,9 +1,7 @@
-FROM readytalk/nodejs
-
-# Add our configuration files and scripts
-WORKDIR /app
-ADD . /app
-RUN npm install
-EXPOSE 80
-
-ENTRYPOINT ["/nodejs/bin/npm", "start"]
+FROM python:3
+RUN pip install flask
+RUN pip install requests
+EXPOSE 5000/tcp
+COPY todolist.py .
+COPY templates/index.html templates/
+CMD python todolist.py
